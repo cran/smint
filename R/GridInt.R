@@ -215,7 +215,8 @@ gridInt <- function(X, Y, Xout,
     }
     
     xLevels <- levels(X)
-    cxLevels <- as.character(xLevels)
+    cxLevels <- lapply(xLevels, as.character)
+    
     nx <- nlevels(X)
     rx <- sapply(xLevels, range)
      
@@ -276,7 +277,7 @@ gridInt <- function(X, Y, Xout,
         nStar <- as.integer(c(1L, cumprod(nx)))
         
         ## Now pass an array with d dimensions and dimensions c(nOut,
-        ## nLevels[1:(d-1)]). Whe now that d >= 2
+        ## nLevels[1:(d-1)]). Whe know that d >= 2
         rho <- new.env()
         environment(interpFun) <- rho
         if (trace) cat("o Using '.Call'\n")
